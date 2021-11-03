@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
-### Calculations of bond length apply to xyz file. Written by Hao Cao ###
+### Written by Hao Cao ###
 import linecache
 import numpy as np
 
