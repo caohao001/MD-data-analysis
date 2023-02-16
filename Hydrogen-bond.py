@@ -2,6 +2,9 @@
 # -*- coding: UTF-8 -*-
 import linecache
 import numpy as np
+### This code is created by Hao Cao. ###
+print('notice!!! Each H2O structure should be complete in the trajectory file')
+
 
 
 lattice_a = np.array([10.8232,0,0])
@@ -39,7 +42,6 @@ def data(x,y):
                 lines.pop(0)
                 H_atom = list(map(float,lines))
                 H_atom_total.append(np.array(H_atom))
-        #print(H_atom_total)
 
 def cal(x,y):
     global N_1, N_2, N_3, N_4, N_5, N_6, N_7, N_8, N_9, N_10, N_11, N_12, N_13, N_14, N_15, N_16, N_17, N_18, N_19, N_20
@@ -51,68 +53,79 @@ def cal(x,y):
               d_OH = i_O-i_H
               d_bond = np.sqrt((d_OH * d_OH).sum())
               OH_output.write(str(d_bond)+'\n')
-              if 1.2 < d_bond < 2:
-                O_location = i_O[2] - z_surface
-                if O_location < 0.5:
-                    N_1 = N_1 + 1
-                elif O_location < 1:
-                    N_2 = N_2 + 1
-                elif O_location < 1.5:
-                    N_3 = N_3 + 1
-                elif O_location < 2:
-                    N_4 = N_4 + 1
-                elif O_location < 2.5:
-                    N_5 = N_5 + 1
-                elif O_location < 3:
-                    N_6 = N_6 + 1
-                elif O_location < 3.5:
-                    N_7 = N_7 + 1
-                elif O_location < 4:
-                    N_8 = N_8 + 1
-                elif O_location < 4.5:
-                    N_9 = N_9 + 1
-                elif O_location < 5:
-                    N_10 = N_10 + 1
-                elif O_location < 5.5:
-                    N_11 = N_11 + 1
-                elif O_location < 6:
-                    N_12 = N_12 + 1
-                elif O_location < 6.5:
-                    N_13 = N_13 + 1
-                elif O_location < 7:
-                    N_14 = N_14 + 1
-                elif O_location < 7.5:
-                    N_15 = N_15 + 1
-                elif O_location < 8:
-                    N_16 = N_16 + 1
-                elif O_location < 8.5:
-                    N_17 = N_17 + 1
-                elif O_location < 9:
-                    N_18 = N_18 + 1
-                elif O_location < 9.5:
-                    N_19 = N_19 + 1
-                elif O_location < 10:
-                    N_20 = N_20 + 1
-                elif O_location < 10.5:
-                    N_21 = N_21 + 1
-                elif O_location < 11:
-                    N_22 = N_22 + 1
-                elif O_location < 11.5:
-                    N_23 = N_23 + 1
-                elif O_location < 12:
-                    N_24 = N_24 + 1
-                elif O_location < 12.5:
-                    N_25 = N_25 + 1
-                elif O_location < 13:
-                    N_26 = N_26 + 1
-                elif O_location < 13.5:
-                    N_27 = N_27 + 1
-                elif O_location < 14:
-                    N_28 = N_28 + 1
-                elif O_location < 14.5:
-                    N_29 = N_29 + 1
-                elif O_location < 15:
-                    N_30 = N_30 + 1
+              if 1.2 < d_bond < 2.2:
+                  for i_O_2 in x:
+                      d_OH_H2O = i_O_2-i_H
+                      d_bond_H2O = np.sqrt((d_OH_H2O * d_OH_H2O).sum())
+                      if d_bond_H2O < 1.2:
+                         bian_1 = d_OH
+                         bian_2 = i_O - i_O_2
+                         L1 = np.sqrt(bian_1.dot(bian_1))
+                         L2 = np.sqrt(bian_2.dot(bian_2))
+                         cos_angle = bian_1.dot(bian_2) / (L1 * L2)
+                         angle = np.arccos(cos_angle) * 360 / 2 / np.pi
+                         if angle < 45:
+                             O_location = i_O[2] - z_surface
+                             if O_location < 0.5:
+                                 N_1 = N_1 + 1
+                             elif O_location < 1:
+                                 N_2 = N_2 + 1
+                             elif O_location < 1.5:
+                                 N_3 = N_3 + 1
+                             elif O_location < 2:
+                                 N_4 = N_4 + 1
+                             elif O_location < 2.5:
+                                 N_5 = N_5 + 1
+                             elif O_location < 3:
+                                 N_6 = N_6 + 1
+                             elif O_location < 3.5:
+                                 N_7 = N_7 + 1
+                             elif O_location < 4:
+                                 N_8 = N_8 + 1
+                             elif O_location < 4.5:
+                                 N_9 = N_9 + 1
+                             elif O_location < 5:
+                                 N_10 = N_10 + 1
+                             elif O_location < 5.5:
+                                 N_11 = N_11 + 1
+                             elif O_location < 6:
+                                 N_12 = N_12 + 1
+                             elif O_location < 6.5:
+                                 N_13 = N_13 + 1
+                             elif O_location < 7:
+                                 N_14 = N_14 + 1
+                             elif O_location < 7.5:
+                                 N_15 = N_15 + 1
+                             elif O_location < 8:
+                                 N_16 = N_16 + 1
+                             elif O_location < 8.5:
+                                 N_17 = N_17 + 1
+                             elif O_location < 9:
+                                 N_18 = N_18 + 1
+                             elif O_location < 9.5:
+                                 N_19 = N_19 + 1
+                             elif O_location < 10:
+                                 N_20 = N_20 + 1
+                             elif O_location < 10.5:
+                                 N_21 = N_21 + 1
+                             elif O_location < 11:
+                                 N_22 = N_22 + 1
+                             elif O_location < 11.5:
+                                 N_23 = N_23 + 1
+                             elif O_location < 12:
+                                 N_24 = N_24 + 1
+                             elif O_location < 12.5:
+                                 N_25 = N_25 + 1
+                             elif O_location < 13:
+                                 N_26 = N_26 + 1
+                             elif O_location < 13.5:
+                                 N_27 = N_27 + 1
+                             elif O_location < 14:
+                                 N_28 = N_28 + 1
+                             elif O_location < 14.5:
+                                 N_29 = N_29 + 1
+                             elif O_location < 15:
+                                 N_30 = N_30 + 1
 
 
 
@@ -174,8 +187,6 @@ while linecache.getline('5ps-10ps.xyz', line_init) != '':
         i = i + lattice_a
         O_atom_ap.append(i)
     O_atom_total = O_atom_ap
-#    lattice_change_plus(O_atom_total,lattice_a)
-#    print(O_atom_total)
     cal(O_atom_total, H_atom_total)
     D_1 = N_1 + D_1
     D_2 = N_2 + D_2
@@ -212,8 +223,6 @@ while linecache.getline('5ps-10ps.xyz', line_init) != '':
         i = i - 2*lattice_a
         O_atom_ap.append(i)
     O_atom_total = O_atom_ap
-#    lattice_change_minor(O_atom_total,2*lattice_a)
-#    print(O_atom_total)
     cal(O_atom_total, H_atom_total)
     D_1 = N_1 + D_1
     D_2 = N_2 + D_2
@@ -250,8 +259,6 @@ while linecache.getline('5ps-10ps.xyz', line_init) != '':
         i = i + lattice_a
         O_atom_ap.append(i)
     O_atom_total = O_atom_ap
-#    lattice_change_plus(O_atom_total, lattice_a)
-#    lattice_change_plus(O_atom_total, lattice_b)
     O_atom_ap = []
     for i in O_atom_total:
         i = i + lattice_b
@@ -293,7 +300,6 @@ while linecache.getline('5ps-10ps.xyz', line_init) != '':
         i = i - 2*lattice_b
         O_atom_ap.append(i)
     O_atom_total = O_atom_ap
-#    lattice_change_minor(O_atom_total, 2*lattice_b)
     cal(O_atom_total, H_atom_total)
     D_1 = N_1 + D_1
     D_2 = N_2 + D_2
